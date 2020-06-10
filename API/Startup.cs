@@ -35,6 +35,17 @@ namespace API
                     opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
                 }
             );
+            // NOTES:----------------------------
+            // Adding cross-origin cors policy
+            // Add the Policy to the middleware for the confugure() method 
+            services.AddCors(
+                opt => {
+                    opt.AddPolicy("CorsPolicy", policy => {
+                        policy.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .WithOrigins("http://localhost:3000");
+                    });
+                });
             services.AddControllers();
         }
 
@@ -53,7 +64,9 @@ namespace API
             app.UseRouting();
 
             app.UseAuthorization();
-
+            // NOTES:----------------------------
+            // Adding cors as middleware in this method that was declared in configureservices method
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
