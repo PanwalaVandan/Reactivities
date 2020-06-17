@@ -9,7 +9,7 @@ interface IProps {
 
 export const ActivityDetails: React.FC<IProps> = ({activity, setEditMode, setSelectedActivity}) => {
   return (
-    <Card fluid>
+      <Card fluid>
       <Image src={`/assets/categoryImages/${activity.category}.jpg`} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{activity.title}</Card.Header>
@@ -27,6 +27,7 @@ export const ActivityDetails: React.FC<IProps> = ({activity, setEditMode, setSel
         </Button.Group>
       </Card.Content>
     </Card>
+
   );
 };
 
